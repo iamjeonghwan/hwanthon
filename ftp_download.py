@@ -7,6 +7,15 @@ files from an FTP server without hard-coding credentials.
 
 from __future__ import annotations
 
+# =============================================================================
+# 🔴 하드코딩 영역 (아래 값을 실제 환경에 맞게 수정하세요)
+# =============================================================================
+FTP_HOST: str | None = None  # 🔴 하드코딩: FTP 서버 IP 또는 호스트명 (예: "192.168.1.100")
+FTP_USER: str | None = None  # 🔴 하드코딩: FTP 사용자 ID
+FTP_PASSWORD: str | None = None  # 🔴 하드코딩: FTP 비밀번호
+FTP_PORT: int = 21  # 🔴 하드코딩: FTP 포트 (기본 21)
+# =============================================================================
+
 import argparse
 import ftplib
 import getpass
@@ -77,10 +86,10 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
 
-    # Prompt for missing connection details so credentials aren't hard-coded.
-    host = prompt_if_missing(args.host, "FTP server IP/hostname: ")
-    username = prompt_if_missing(args.username, "FTP user ID: ")
-    password = prompt_if_missing(args.password, "FTP password: ", secret=True)
+    # 🔴 하드코딩된 값(FTP_HOST, FTP_USER, FTP_PASSWORD)이 있으면 사용, 없으면 입력 프롬프트
+    host = prompt_if_missing(args.host or FTP_HOST, "FTP server IP/hostname: ")
+    username = prompt_if_missing(args.username or FTP_USER, "FTP user ID: ")
+    password = prompt_if_missing(args.password or FTP_PASSWORD, "FTP password: ", secret=True)
 
     remote_path = args.remote_path
     # Default local path to the basename of the remote path if not provided.
@@ -90,6 +99,9 @@ def main() -> None:
         else Path(remote_path).name
     )
 
+    # 🔴 하드코딩: 포트는 --port 미지정 시 FTP_PORT 사용
+    port = args.port if args.port != 21 else FTP_PORT
+
     try:
         download_file(
             host=host,
@@ -97,7 +109,7 @@ def main() -> None:
             password=password,
             remote_path=remote_path,
             local_path=local_path,
-            port=args.port,
+            port=port,
             passive=not args.no_passive,
         )
     except ftplib.all_errors as exc:
