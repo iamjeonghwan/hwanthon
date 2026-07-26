@@ -1,0 +1,165 @@
+{
+  "updated_at": "2026-07-26",
+  "destination": {
+    "name": "SK하이닉스 이천",
+    "lat": 37.245,
+    "lon": 127.478
+  },
+  "notes": [
+    "user/online merge 결과. 공식 노선표는 사내앱에서 재검증하세요."
+  ],
+  "routes": [
+    {
+      "route_name": "수지·성복권",
+      "stops": [
+        {
+          "stop_name": "성복역(신분당)",
+          "lat": 37.3134,
+          "lon": 127.0804,
+          "ride_minutes_to_hynix": 55.0,
+          "source": "public_mentions+online_mention"
+        },
+        {
+          "stop_name": "수지구청역(신분당)",
+          "lat": 37.3226,
+          "lon": 127.0948,
+          "ride_minutes_to_hynix": 60.0,
+          "source": "public_mentions+online_mention"
+        },
+        {
+          "stop_name": "풍덕천 신정마을",
+          "lat": 37.322,
+          "lon": 127.0965,
+          "ride_minutes_to_hynix": 60.0,
+          "source": "public_mentions+online_mention"
+        }
+      ]
+    },
+    {
+      "route_name": "판교·분당권",
+      "stops": [
+        {
+          "stop_name": "판교역",
+          "lat": 37.3947,
+          "lon": 127.1112,
+          "ride_minutes_to_hynix": 70.0,
+          "source": "public_mentions"
+        },
+        {
+          "stop_name": "수내역",
+          "lat": 37.3784,
+          "lon": 127.1143,
+          "ride_minutes_to_hynix": 75.0,
+          "source": "public_mentions"
+        },
+        {
+          "stop_name": "서현역",
+          "lat": 37.3851,
+          "lon": 127.1235,
+          "ride_minutes_to_hynix": 75.0,
+          "source": "public_mentions"
+        }
+      ]
+    },
+    {
+      "route_name": "광교·영통권",
+      "stops": [
+        {
+          "stop_name": "광교중앙역",
+          "lat": 37.2886,
+          "lon": 127.0513,
+          "ride_minutes_to_hynix": 65.0,
+          "source": "public_mentions"
+        },
+        {
+          "stop_name": "영통역",
+          "lat": 37.2515,
+          "lon": 127.0714,
+          "ride_minutes_to_hynix": 70.0,
+          "source": "public_mentions"
+        }
+      ]
+    },
+    {
+      "route_name": "동탄권",
+      "stops": [
+        {
+          "stop_name": "동탄역",
+          "lat": 37.1995,
+          "lon": 127.0968,
+          "ride_minutes_to_hynix": 55.0,
+          "source": "public_mentions+online_mention"
+        }
+      ]
+    },
+    {
+      "route_name": "미사·강동권",
+      "stops": [
+        {
+          "stop_name": "미사강변도시",
+          "lat": 37.5635,
+          "lon": 127.192,
+          "ride_minutes_to_hynix": 50.0,
+          "source": "public_mentions+online_mention"
+        },
+        {
+          "stop_name": "강동역 인근",
+          "lat": 37.5359,
+          "lon": 127.1324,
+          "ride_minutes_to_hynix": 55.0,
+          "source": "public_mentions"
+        }
+      ]
+    },
+    {
+      "route_name": "서울 서남권(예시)",
+      "stops": [
+        {
+          "stop_name": "대방역",
+          "lat": 37.5134,
+          "lon": 126.9263,
+          "ride_minutes_to_hynix": 100.0,
+          "source": "public_mentions+online_mention"
+        },
+        {
+          "stop_name": "구로디지털단지역",
+          "lat": 37.4852,
+          "lon": 126.9015,
+          "ride_minutes_to_hynix": 105.0,
+          "source": "public_mentions+online_mention"
+        }
+      ]
+    },
+    {
+      "route_name": "이천 캠퍼스 직주근접",
+      "stops": [
+        {
+          "stop_name": "하이닉스 이천 정문(도보권)",
+          "lat": 37.245,
+          "lon": 127.478,
+          "ride_minutes_to_hynix": 5.0,
+          "source": "campus_gate"
+        }
+      ]
+    },
+    {
+      "route_name": "강남권(예시)",
+      "stops": [
+        {
+          "stop_name": "강남역 인근",
+          "lat": 37.4979,
+          "lon": 127.0276,
+          "ride_minutes_to_hynix": 90.0,
+          "source": "public_mentions"
+        },
+        {
+          "stop_name": "잠실역 인근",
+          "lat": 37.5133,
+          "lon": 127.1001,
+          "ride_minutes_to_hynix": 80.0,
+          "source": "public_mentions"
+        }
+      ]
+    }
+  ]
+}

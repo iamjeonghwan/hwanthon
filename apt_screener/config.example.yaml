@@ -1,0 +1,61 @@
+# 복사: cp config.example.yaml config.yaml
+
+# 검색 대상 법정동 코드 (cortarNo). 동 단위 권장.
+# 예: 성복동, 풍덕천동, 판교동, 수내동, 미사 등 셔세권 후보
+regions:
+  - name: 용인 성복동
+    cortar_no: "4146510700"
+  - name: 용인 풍덕천동
+    cortar_no: "4146510100"
+  - name: 성남 판교동
+    cortar_no: "4113510700"
+  - name: 성남 수내동
+    cortar_no: "4113510300"
+  - name: 하남 풍산동
+    cortar_no: "4145010900"
+
+# 매매만
+trade_type: A1
+real_estate_type: APT
+
+# 가격 필터 (만원). null이면 제한 없음
+price_min_manwon: 40000   # 4억
+price_max_manwon: 200000  # 20억
+
+# 통근 기준점
+gangnam_station:
+  name: 강남역
+  lat: 37.4979
+  lon: 127.0276
+
+hynix_icheon:
+  name: SK하이닉스 이천
+  lat: 37.2450
+  lon: 127.4780
+
+# ODsay 대중교통 API (선택). https://odsay.com 에서 발급
+odsay_api_key: ""
+
+# 하이닉스 셔틀 데이터
+hynix_shuttle:
+  local_file: data/hynix_shuttle_routes.json
+  # 공개 웹에서 노선 힌트를 추가로 수집 (공식 노선표가 아닌 참고용)
+  fetch_online: true
+  # 사용자 CSV 덮어쓰기 경로 (사내앱에서 정리한 정류장)
+  # columns: route_name,stop_name,lat,lon,ride_minutes_to_hynix,source
+  user_csv: ""
+
+# 스코어링 가중치 (합=1.0 권장)
+weights:
+  walk_to_subway: 0.20
+  gangnam_commute: 0.30
+  hynix_shuttle_commute: 0.30
+  price_value: 0.10
+  complex_quality: 0.10
+
+# 요청 간격(초) — 네이버 차단 완화
+request_delay_sec: 1.0
+
+# 오프라인 데모 (네이버 API 불가 환경)
+demo_mode: false
+demo_data: data/sample_complexes.json

@@ -1,0 +1,147 @@
+{
+  "note": "네이버 API 차단/오프라인 환경용 데모 데이터 (실제 호가와 다를 수 있음)",
+  "complexes": [
+    {
+      "complexNo": "119213",
+      "complexName": "성복역롯데캐슬골드타운",
+      "cortarAddress": "경기도 용인시 수지구 성복동",
+      "latitude": 37.3138,
+      "longitude": 127.0810,
+      "totalHouseholdCount": 2356,
+      "useApproveYmd": "20190601",
+      "dealCount": 12,
+      "articles": [
+        {
+          "articleNo": "demo-1",
+          "dealOrWarrantPrc": "17억 4,000",
+          "priceManwon": 174000,
+          "area1": 84,
+          "area2": 110,
+          "floorInfo": "15/30",
+          "direction": "남향",
+          "articleConfirmYmd": "20260720"
+        },
+        {
+          "articleNo": "demo-1b",
+          "dealOrWarrantPrc": "16억 8,000",
+          "priceManwon": 168000,
+          "area1": 84,
+          "area2": 110,
+          "floorInfo": "8/30",
+          "direction": "남동향",
+          "articleConfirmYmd": "20260718"
+        }
+      ]
+    },
+    {
+      "complexNo": "102345",
+      "complexName": "수지신정마을1단지주공",
+      "cortarAddress": "경기도 용인시 수지구 풍덕천동",
+      "latitude": 37.3228,
+      "longitude": 127.0955,
+      "totalHouseholdCount": 980,
+      "useApproveYmd": "20000501",
+      "dealCount": 8,
+      "articles": [
+        {
+          "articleNo": "demo-2",
+          "dealOrWarrantPrc": "11억 5,000",
+          "priceManwon": 115000,
+          "area1": 59,
+          "area2": 78,
+          "floorInfo": "10/15",
+          "direction": "남향",
+          "articleConfirmYmd": "20260715"
+        }
+      ]
+    },
+    {
+      "complexNo": "109208",
+      "complexName": "판교푸르지오그랑블",
+      "cortarAddress": "경기도 성남시 분당구 판교동",
+      "latitude": 37.3935,
+      "longitude": 127.1120,
+      "totalHouseholdCount": 842,
+      "useApproveYmd": "20090901",
+      "dealCount": 5,
+      "articles": [
+        {
+          "articleNo": "demo-3",
+          "dealOrWarrantPrc": "22억",
+          "priceManwon": 220000,
+          "area1": 101,
+          "area2": 132,
+          "floorInfo": "12/25",
+          "direction": "남향",
+          "articleConfirmYmd": "20260710"
+        }
+      ]
+    },
+    {
+      "complexNo": "130001",
+      "complexName": "미사강변센트럴자이",
+      "cortarAddress": "경기도 하남시 풍산동",
+      "latitude": 37.5605,
+      "longitude": 127.1905,
+      "totalHouseholdCount": 1450,
+      "useApproveYmd": "20181201",
+      "dealCount": 9,
+      "articles": [
+        {
+          "articleNo": "demo-4",
+          "dealOrWarrantPrc": "16억 3,000",
+          "priceManwon": 163000,
+          "area1": 96,
+          "area2": 125,
+          "floorInfo": "20/35",
+          "direction": "남서향",
+          "articleConfirmYmd": "20260712"
+        }
+      ]
+    },
+    {
+      "complexNo": "140001",
+      "complexName": "동탄역센트럴푸르지오",
+      "cortarAddress": "경기도 화성시 동탄구 청계동",
+      "latitude": 37.2005,
+      "longitude": 127.0975,
+      "totalHouseholdCount": 1348,
+      "useApproveYmd": "20131201",
+      "dealCount": 11,
+      "articles": [
+        {
+          "articleNo": "demo-5",
+          "dealOrWarrantPrc": "8억 2,000",
+          "priceManwon": 82000,
+          "area1": 59,
+          "area2": 84,
+          "floorInfo": "18/29",
+          "direction": "남향",
+          "articleConfirmYmd": "20260708"
+        }
+      ]
+    },
+    {
+      "complexNo": "150001",
+      "complexName": "이천현대성우2단지",
+      "cortarAddress": "경기도 이천시 부발읍 아미리",
+      "latitude": 37.2480,
+      "longitude": 127.4750,
+      "totalHouseholdCount": 620,
+      "useApproveYmd": "20060801",
+      "dealCount": 3,
+      "articles": [
+        {
+          "articleNo": "demo-6",
+          "dealOrWarrantPrc": "4억 2,500",
+          "priceManwon": 42500,
+          "area1": 84,
+          "area2": 110,
+          "floorInfo": "7/15",
+          "direction": "남향",
+          "articleConfirmYmd": "20260701"
+        }
+      ]
+    }
+  ]
+}
