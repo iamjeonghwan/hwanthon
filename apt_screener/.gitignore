@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+output/*.csv
+output/*.xlsx
+output/*.json
+config.local.yaml
+data/my_hynix_stops.csv

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>통근맵 — 강남·하이닉스 아파트 스크리너</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand-block">
+      <p class="brand">통근맵</p>
+      <p class="tagline">강남 지하철 · 하이닉스 셔틀 · 매매 스크리닝</p>
+    </div>
+    <div class="controls">
+      <label class="toggle">
+        <input type="checkbox" id="demoToggle" checked />
+        <span>데모 데이터</span>
+      </label>
+      <button type="button" id="refreshBtn" class="btn-primary">다시 분석</button>
+    </div>
+  </header>
+
+  <main class="stage">
+    <section class="map-plane" aria-label="지도">
+      <div id="map"></div>
+      <div class="map-legend">
+        <span><i class="dot apt"></i>아파트</span>
+        <span><i class="dot shuttle"></i>셔틀</span>
+        <span><i class="dot anchor"></i>강남·하이닉스</span>
+      </div>
+    </section>
+
+    <aside class="panel" aria-label="랭킹 패널">
+      <div class="panel-head">
+        <h1>듀얼 통근 적합도</h1>
+        <p id="statusLine" class="status">불러오는 중…</p>
+      </div>
+
+      <div class="filters">
+        <label>
+          강남 ≤
+          <input type="range" id="gangnamMax" min="20" max="120" value="90" />
+          <strong id="gangnamMaxLabel">90</strong>분
+        </label>
+        <label>
+          하이닉스 ≤
+          <input type="range" id="hynixMax" min="30" max="150" value="100" />
+          <strong id="hynixMaxLabel">100</strong>분
+        </label>
+      </div>
+
+      <ol id="rankList" class="rank-list"></ol>
+
+      <article id="detail" class="detail is-empty">
+        <p class="detail-placeholder">목록에서 단지를 선택하세요</p>
+      </article>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    투자 권유가 아닙니다. 하이닉스 셔틀은 사내 공식 노선표로 재확인하세요.
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

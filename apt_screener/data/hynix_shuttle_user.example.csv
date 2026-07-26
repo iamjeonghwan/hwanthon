@@ -1,0 +1,4 @@
+route_name,stop_name,lat,lon,ride_minutes_to_hynix,source
+수지·성복권,성복역(신분당),37.3134,127.0804,52,user_csv
+수지·성복권,수지구청역(신분당),37.3226,127.0948,58,user_csv
+판교·분당권,판교역,37.3947,127.1112,68,user_csv
