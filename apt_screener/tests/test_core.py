@@ -65,3 +65,14 @@ def test_run_screen_demo_payload():
     assert payload["shuttle_stops"]
     assert "lat" in payload["results"][0]
     assert "score_breakdown" in payload["results"][0]
+
+
+def test_jangan_geonyeong_in_comparison():
+    payload = run_screen(demo=True, offline=True)
+    names = [r["complex_name"] for r in payload["results"]]
+    assert "장안타운건영2차" in names
+    item = next(r for r in payload["results"] if r["complex_name"] == "장안타운건영2차")
+    assert item["watchlist"] is True
+    assert item["lat"] and item["lon"]
+    assert item["hynix_total_min"] < 90
+    assert payload["meta"]["watchlist_count"] >= 1

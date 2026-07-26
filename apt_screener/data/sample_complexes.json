@@ -142,6 +142,49 @@
           "articleConfirmYmd": "20260701"
         }
       ]
+    },
+    {
+      "complexNo": "15402",
+      "complexName": "장안타운건영2차",
+      "cortarAddress": "경기도 성남시 분당구 분당동",
+      "latitude": 37.37215,
+      "longitude": 127.14328,
+      "totalHouseholdCount": 1688,
+      "useApproveYmd": "19931227",
+      "dealCount": 22,
+      "watchlist": true,
+      "articles": [
+        {
+          "articleNo": "demo-jangan-1",
+          "dealOrWarrantPrc": "16억",
+          "priceManwon": 160000,
+          "area1": 85,
+          "area2": 106,
+          "floorInfo": "14/20",
+          "direction": "남향",
+          "articleConfirmYmd": "20260630"
+        },
+        {
+          "articleNo": "demo-jangan-2",
+          "dealOrWarrantPrc": "14억 2,500",
+          "priceManwon": 142500,
+          "area1": 85,
+          "area2": 106,
+          "floorInfo": "11/20",
+          "direction": "남동향",
+          "articleConfirmYmd": "20260701"
+        },
+        {
+          "articleNo": "demo-jangan-3",
+          "dealOrWarrantPrc": "16억 3,000",
+          "priceManwon": 163000,
+          "area1": 85,
+          "area2": 106,
+          "floorInfo": "15/20",
+          "direction": "남향",
+          "articleConfirmYmd": "20260612"
+        }
+      ]
     }
   ]
 }

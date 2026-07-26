@@ -93,6 +93,21 @@ python3 -m apt_screener fetch-shuttle --user-csv data/my_hynix_stops.csv
 
 [ODsay](https://www.odsay.com/devCenter/main.do) API 키를 `config.yaml` 의 `odsay_api_key` 또는 `--odsay-key` 로 넣으면, 단지→강남역 대중교통 실소요를 사용합니다.
 
+## 비교 고정 (워치리스트)
+
+`config.yaml` 의 `watchlist` 에 넣은 단지는 검색 결과와 항상 함께 비교됩니다.  
+기본값으로 **장안타운건영2차**(분당동)가 포함되어 있습니다.
+
+```yaml
+watchlist:
+  complex_names:
+    - 장안타운건영2차
+  complex_nos:
+    - "15402"
+```
+
+웹 UI 목록 상단에 `비교` 배지로 표시됩니다.
+
 ## 점수 의미
 
 | 항목 | 의미 |

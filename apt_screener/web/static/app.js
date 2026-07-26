@@ -115,9 +115,13 @@ function filteredResults() {
   if (!state.payload) return [];
   const gMax = Number($("gangnamMax").value);
   const hMax = Number($("hynixMax").value);
-  return (state.payload.results || []).filter(
+  const rows = (state.payload.results || []).filter(
     (r) => r.gangnam_total_min <= gMax && r.hynix_total_min <= hMax
   );
+  // 워치리스트(비교 고정) 단지를 목록 상단에 유지
+  const pinned = rows.filter((r) => r.watchlist);
+  const rest = rows.filter((r) => !r.watchlist);
+  return [...pinned, ...rest];
 }
 
 function renderList() {
@@ -128,15 +132,19 @@ function renderList() {
     list.innerHTML = `<li class="rank-meta" style="padding:0.8rem">필터 조건에 맞는 단지가 없습니다.</li>`;
     return;
   }
-  rows.forEach((r, i) => {
+  rows.forEach((r) => {
     const li = document.createElement("li");
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "rank-item" + (state.selectedId === r.complex_no ? " is-active" : "");
+    const pin = r.watchlist ? `<span class="pin-badge">비교</span>` : "";
+    btn.className =
+      "rank-item" +
+      (state.selectedId === r.complex_no ? " is-active" : "") +
+      (r.watchlist ? " is-watch" : "");
     btn.innerHTML = `
-      <span class="rank-no">${i + 1}</span>
+      <span class="rank-no">${r.watchlist ? "★" : r.rank}</span>
       <span>
-        <div class="rank-name">${r.complex_name}</div>
+        <div class="rank-name">${r.complex_name} ${pin}</div>
         <div class="rank-meta">강남 ${r.gangnam_total_min}분 · 하이닉스 ${r.hynix_total_min}분 · ${formatPrice(r.min_price_manwon)}</div>
       </span>
       <span class="rank-score">${r.rank_score}</span>
@@ -187,9 +195,10 @@ function renderDetail(r) {
     )
     .join("<br/>");
 
+  const pinLabel = r.watchlist ? `<span class="pin-badge">비교 고정</span>` : "";
   el.innerHTML = `
-    <h2 class="detail-title">${r.complex_name}</h2>
-    <p class="detail-addr">${r.address || ""} · 점수 ${r.rank_score}</p>
+    <h2 class="detail-title">${r.complex_name} ${pinLabel}</h2>
+    <p class="detail-addr">${r.address || ""} · 점수 ${r.rank_score}${r.watchlist ? " · 워치리스트" : ""}</p>
     <div class="metrics">
       <div class="metric"><span>최저 호가</span><b>${formatPrice(r.min_price_manwon)}</b></div>
       <div class="metric"><span>지하철 도보</span><b>${r.subway_walk_min}<small>분</small></b></div>
@@ -221,19 +230,24 @@ async function loadData() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     state.payload = await res.json();
     const n = state.payload.results?.length || 0;
+    const wl = state.payload.meta?.watchlist_count || 0;
     const mode = state.payload.mode === "demo" ? "데모" : "라이브";
-    $("statusLine").textContent = `${mode} · ${n}개 단지 · 셔틀 ${(state.payload.shuttle_stops || []).length}개 정류장`;
+    $("statusLine").textContent = `${mode} · ${n}개 단지 · 비교고정 ${wl} · 셔틀 ${(state.payload.shuttle_stops || []).length}개 정류장`;
     if (state.payload.errors?.length) {
       $("statusLine").textContent += ` · 경고 ${state.payload.errors.length}`;
     }
     renderMap(state.payload);
     renderList();
-    if (!state.selectedId && state.payload.results?.[0]) {
-      selectComplex(state.payload.results[0].complex_no);
+    const prefer =
+      state.payload.results.find((r) => r.watchlist && r.complex_name.includes("장안")) ||
+      state.payload.results.find((r) => r.watchlist) ||
+      state.payload.results?.[0];
+    if (!state.selectedId && prefer) {
+      selectComplex(prefer.complex_no);
     } else if (state.selectedId) {
       const still = state.payload.results.find((r) => r.complex_no === state.selectedId);
       if (still) selectComplex(still.complex_no);
-      else if (state.payload.results?.[0]) selectComplex(state.payload.results[0].complex_no);
+      else if (prefer) selectComplex(prefer.complex_no);
     }
   } catch (err) {
     console.error(err);

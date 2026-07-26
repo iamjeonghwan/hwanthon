@@ -10,8 +10,8 @@ import yaml
 
 from .commute import CommuteEstimator, load_subway_stations
 from .hynix_shuttle import build_shuttle_dataset, load_shuttle_stops
-from .models import ScoredApartment
-from .naver_land import NaverLandClient, load_demo_listings
+from .models import ComplexListing, ScoredApartment
+from .naver_land import NaverLandClient, load_demo_listings, load_watchlist_listings
 from .scoring import rank_listings
 
 logger = logging.getLogger(__name__)
@@ -27,6 +27,33 @@ def load_config(path: str | Path | None = None) -> dict[str, Any]:
         return yaml.safe_load(f) or {}
 
 
+def _merge_listings(
+    base: list[ComplexListing], extra: list[ComplexListing]
+) -> list[ComplexListing]:
+    by_no = {c.complex_no: c for c in base}
+    for item in extra:
+        existing = by_no.get(item.complex_no)
+        if existing is None:
+            by_no[item.complex_no] = item
+        else:
+            existing.watchlist = existing.watchlist or item.watchlist
+    # name fallback for watchlist highlight
+    watch_names = {c.complex_name for c in extra if c.watchlist}
+    for c in by_no.values():
+        if c.complex_name in watch_names:
+            c.watchlist = True
+    return list(by_no.values())
+
+
+def _watchlist_from_config(cfg: dict[str, Any]) -> list[ComplexListing]:
+    wl = cfg.get("watchlist") or {}
+    demo_path = ROOT / cfg.get("demo_data", "data/sample_complexes.json")
+    names = list(wl.get("complex_names") or [])
+    nos = [str(x) for x in (wl.get("complex_nos") or [])]
+    # seed 파일의 watchlist:true + config 지정 단지
+    return load_watchlist_listings(demo_path, names=names, complex_nos=nos)
+
+
 def run_screen(
     cfg: dict[str, Any] | None = None,
     *,
@@ -37,8 +64,9 @@ def run_screen(
 ) -> dict[str, Any]:
     """스크리닝 실행 후 웹/API용 페이로드 반환."""
     cfg = cfg or load_config()
-    listings = []
+    listings: list[ComplexListing] = []
     errors: list[str] = []
+    watchlist = _watchlist_from_config(cfg)
 
     if demo:
         demo_path = ROOT / cfg.get("demo_data", "data/sample_complexes.json")
@@ -66,6 +94,9 @@ def run_screen(
                     errors.append(msg)
                     logger.warning("region fetch failed: %s", msg)
 
+    # 워치리스트(장안타운건영2차 등)는 항상 결과에 포함해 비교
+    listings = _merge_listings(listings, watchlist)
+
     hs = cfg.get("hynix_shuttle", {})
     local = ROOT / hs.get("local_file", "data/hynix_shuttle_routes.json")
     user_csv = hs.get("user_csv") or None
@@ -77,7 +108,6 @@ def run_screen(
         user_csv=user_csv,
         fetch_online=bool(hs.get("fetch_online", True)) and not offline,
     )
-    # offline/online 실패 시에도 seed는 보장
     if not stops:
         stops = load_shuttle_stops(local)
 
@@ -101,6 +131,7 @@ def run_screen(
         "meta": {
             "listing_count": len(listings),
             "ranked_count": len(ranked),
+            "watchlist_count": sum(1 for c in listings if c.watchlist),
             "shuttle": shuttle_meta,
             "weights": cfg.get("weights", {}),
         },
