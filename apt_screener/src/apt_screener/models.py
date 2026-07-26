@@ -36,6 +36,7 @@ class ComplexListing:
     use_approve_ymd: str = ""
     articles: list[Article] = field(default_factory=list)
     deal_count: int = 0
+    watchlist: bool = False
 
     @property
     def min_price_manwon(self) -> int | None:
@@ -106,6 +107,7 @@ class ScoredApartment:
             "complex_name": c.complex_name,
             "address": c.address,
             "complex_no": c.complex_no,
+            "watchlist": c.watchlist,
             "min_price_manwon": c.min_price_manwon,
             "median_manwon_per_pyeong": (
                 round(c.median_price_per_pyeong, 1) if c.median_price_per_pyeong else None

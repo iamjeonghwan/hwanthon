@@ -58,6 +58,13 @@
           "lon": 127.1235,
           "ride_minutes_to_hynix": 75.0,
           "source": "public_mentions"
+        },
+        {
+          "stop_name": "분당 장안타운",
+          "lat": 37.3722,
+          "lon": 127.1433,
+          "ride_minutes_to_hynix": 72.0,
+          "source": "watchlist_hub"
         }
       ]
     },
