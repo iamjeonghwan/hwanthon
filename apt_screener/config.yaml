@@ -6,6 +6,15 @@ regions:
     cortar_no: "4146510100"
   - name: 성남 판교동
     cortar_no: "4113510700"
+  - name: 성남 분당동
+    cortar_no: "4113510900"
+
+# 항상 비교에 포함할 단지 (데모 시드 기준, 라이브에서도 merge)
+watchlist:
+  complex_names:
+    - 장안타운건영2차
+  complex_nos:
+    - "15402"
 
 trade_type: A1
 real_estate_type: APT

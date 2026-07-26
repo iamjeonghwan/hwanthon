@@ -220,6 +220,23 @@ html, body {
   border-color: rgba(13, 107, 99, 0.35);
 }
 
+.rank-item.is-watch {
+  background: rgba(217, 119, 6, 0.08);
+  border-color: rgba(217, 119, 6, 0.28);
+}
+
+.pin-badge {
+  display: inline-block;
+  margin-left: 0.25rem;
+  padding: 0.05rem 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--signal-deep);
+  background: rgba(217, 119, 6, 0.16);
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
 .rank-no {
   font-family: var(--font-display);
   font-weight: 700;

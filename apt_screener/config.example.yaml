@@ -11,8 +11,17 @@ regions:
     cortar_no: "4113510700"
   - name: 성남 수내동
     cortar_no: "4113510300"
+  - name: 성남 분당동
+    cortar_no: "4113510900"
   - name: 하남 풍산동
     cortar_no: "4145010900"
+
+# 항상 비교에 포함할 단지
+watchlist:
+  complex_names:
+    - 장안타운건영2차
+  complex_nos:
+    - "15402"
 
 # 매매만
 trade_type: A1

@@ -263,6 +263,27 @@ def load_demo_listings(path: str | Path) -> list[ComplexListing]:
                 use_approve_ymd=str(raw.get("useApproveYmd") or ""),
                 articles=articles,
                 deal_count=int(raw.get("dealCount") or len(articles)),
+                watchlist=bool(raw.get("watchlist")),
             )
         )
+    return out
+
+
+def load_watchlist_listings(
+    path: str | Path,
+    names: list[str] | None = None,
+    complex_nos: list[str] | None = None,
+) -> list[ComplexListing]:
+    """데모/시드 파일에서 워치리스트 단지 또는 지정 단지명만 추출."""
+    all_listings = load_demo_listings(path)
+    name_set = {n.strip() for n in (names or []) if n and n.strip()}
+    no_set = {str(n).strip() for n in (complex_nos or []) if n}
+    out: list[ComplexListing] = []
+    for item in all_listings:
+        if item.watchlist:
+            out.append(item)
+            continue
+        if item.complex_name in name_set or item.complex_no in no_set:
+            item.watchlist = True
+            out.append(item)
     return out
