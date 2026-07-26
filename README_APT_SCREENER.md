@@ -6,5 +6,6 @@
 cd apt_screener
 pip install -r requirements.txt
 export PYTHONPATH=src
-python3 -m apt_screener screen --demo --offline
+python3 -m apt_screener web --port 8000
+# 브라우저: http://localhost:8000
 ```

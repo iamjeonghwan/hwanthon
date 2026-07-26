@@ -25,7 +25,21 @@ python3 -m pip install -r requirements.txt
 export PYTHONPATH=src
 ```
 
-## 빠른 데모 (네이버 API 없이)
+## 웹 UI (추천)
+
+지도·랭킹·통근 점수 막대를 한 화면에서 봅니다.
+
+```bash
+bash scripts/run_web.sh
+# 또는
+export PYTHONPATH=src
+python3 -m apt_screener web --port 8000
+```
+
+브라우저에서 `http://localhost:8000` 접속.  
+기본은 데모 데이터이며, 상단 토글로 라이브(네이버) 수집을 시도할 수 있습니다.
+
+## 빠른 데모 (CLI)
 
 ```bash
 bash scripts/run_demo.sh

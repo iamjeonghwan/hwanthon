@@ -7,6 +7,7 @@ from apt_screener.hynix_shuttle import load_shuttle_stops, merge_stops
 from apt_screener.models import ShuttleStop
 from apt_screener.naver_land import load_demo_listings, parse_price_manwon
 from apt_screener.scoring import rank_listings
+from apt_screener.service import run_screen
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -55,3 +56,12 @@ def test_merge_stops_prefers_user():
     assert len(merged) == 1
     assert merged[0].ride_minutes_to_hynix == 55
     assert merged[0].source == "user_csv"
+
+
+def test_run_screen_demo_payload():
+    payload = run_screen(demo=True, offline=True)
+    assert payload["mode"] == "demo"
+    assert payload["results"]
+    assert payload["shuttle_stops"]
+    assert "lat" in payload["results"][0]
+    assert "score_breakdown" in payload["results"][0]
